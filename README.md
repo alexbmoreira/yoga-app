@@ -13,6 +13,11 @@
 `python manage.py migrate`
 `python manage.py backfill`
 
+### Running frontend
+`cd frontend`
+`npm install`
+`npm start`
+
 ### Run the webserver
 `python manage.py runserver`
 
