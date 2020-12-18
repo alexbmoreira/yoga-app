@@ -7,19 +7,27 @@
 
 ## Getting started 
 ### Install dependencies
-`pip install -r requirements.txt`
+```shell
+pip install -r requirements.txt
+```
 
 ### Bootstrap database
-`python manage.py migrate`
-`python manage.py backfill`
+```shell
+python manage.py migrate
+python manage.py backfill
+```
 
 ### Running frontend
-`cd frontend`
-`npm install`
-`npm start`
+```shell
+cd frontend
+npm install
+npm start
+```
 
 ### Run the webserver
-`python manage.py runserver`
+```shell
+python manage.py runserver
+```
 
 ### Accessing the data via API
 
