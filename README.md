@@ -10,6 +10,7 @@
 `pip install -r requirements.txt`
 
 ### Bootstrap database
+`python manage.py migrate`
 `python manage.py backfill`
 
 ### Run the webserver
