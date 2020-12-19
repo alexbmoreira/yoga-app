@@ -4,22 +4,28 @@
       <h1>Namaste</h1>
       <div class="sequence">
         <div class="sequence-scroll hide-scrollbar">
-          <div v-for="(pose, index) in selected" :key="index" class="pose">
-            <h2>{{ pose.display_name }}</h2>
+          <div v-for="(pose, index) in selected" :key="index" class="sequence-chunk">
+            <i v-if="index > 0" class="fas fa-angle-double-right"></i>
+            <div class="pose">
+              <h2>{{ pose.display_name }}</h2>
+            </div>
           </div>
         </div>
       </div>
       <div class="add-pose">
         <div class="add-pose-option">
           <h3>Add a pose</h3>
-          <button @click="dropdown = true" class="add-button center">+</button>
+          <button @click="dropdown = !dropdown" class="add-button center">
+            <i v-if="dropdown == false" class="fas fa-chevron-down"></i>
+            <i v-if="dropdown" class="fas fa-chevron-up"></i>
+          </button>
         </div>
         <div v-if="dropdown" class="search">
           <input class="pose-search" type="text" v-model="search_term" />
-          <div class="poses-list">
+          <div class="poses-list hide-scrollbar">
             <div v-for="(pose, index) in searchedPoses" :key="index" class="list-pose">
               <p>{{ pose.display_name }}</p>
-              <button @click="addPose(pose)" class="add-button center">+</button>
+              <button @click="addPose(pose)" class="add-button center"><i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -73,7 +79,11 @@ export default {
 }
 
 .container {
-  max-width: 1150px;
+  max-width: 1090px;
+}
+
+.fa-angle-double-right {
+  font-size: 3em;
 }
 
 .pose {
@@ -90,7 +100,12 @@ export default {
 
 .sequence {
   min-height: 200px;
-  min-width: 1150px;
+  min-width: 1090px;
+}
+
+.sequence-chunk {
+  display: flex;
+  align-items: center;
 }
 
 .sequence-scroll {
