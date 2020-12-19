@@ -12,13 +12,14 @@
       <div class="add-pose">
         <div class="add-pose-option">
           <h3>Add a pose</h3>
-          <button @click="dropdown = true" class="add-button">+</button>
+          <button @click="dropdown = true" class="add-button center">+</button>
         </div>
         <div v-if="dropdown" class="search">
           <input class="pose-search" type="text" v-model="search_term" />
           <div class="poses-list">
             <div v-for="(pose, index) in searchedPoses" :key="index" class="list-pose">
               <p>{{ pose.display_name }}</p>
+              <button @click="addPose(pose)" class="add-button center">+</button>
             </div>
           </div>
         </div>
@@ -35,104 +36,15 @@ export default {
   data() {
     return {
       poses: [],
-      selected: [
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        }
-      ],
-      dropdown: true,
+      selected: [],
+      dropdown: false,
       search_term: ""
     };
   },
   methods: {
-
+    addPose(pose) {
+      this.selected.push(pose)
+    }
   },
   computed: {
     searchedPoses() {
@@ -176,7 +88,13 @@ export default {
   margin-left: 5px;
 }
 
+.sequence {
+  min-height: 200px;
+  min-width: 1150px;
+}
+
 .sequence-scroll {
+  overflow-x: scroll;
   display: flex;
 }
 .hide-scrollbar {
@@ -185,10 +103,6 @@ export default {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-.sequence-scroll {
-  overflow-x: scroll;
 }
 
 .add-pose-option {
@@ -204,6 +118,7 @@ export default {
   border: 0;
   color: #fff;
   cursor: pointer;
+  font-size: 1em;
 }
 
 .pose-search {
@@ -230,11 +145,10 @@ export default {
 .list-pose {
   border-bottom: 1px solid #d6d6d6;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+  align-items: center;
 }
 .list-pose:nth-last-child(1) {
   border-bottom: 0px solid #d6d6d6;
-  display: flex;
-  justify-content: left;
 }
 </style>
