@@ -16,7 +16,10 @@
         </div>
 
         <div v-if="dropdown" class="search">
-          <input type="text">
+          <input type="text" />
+          <div v-for="(pose, index) in poses" :key="index">
+            <p>{{pose.display_name}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -24,112 +27,113 @@
 </template>
 
 <script>
-import posesApi from '../api/poses'
+import posesApi from "../api/poses";
 
 export default {
-  name: 'Homepage',
+  name: "Homepage",
   data() {
     return {
       poses: [],
       selected: [
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         },
         {
-          "base_name": "grasshopper",
-          "display_name": "Grasshopper",
-          "preferred_side": "RIGHT",
-          "sanskrit_name": "Maksikanagāsana",
-          "sideways": true,
-          "sort_name": "Grasshopper",
-          "two_sided": false
+          base_name: "grasshopper",
+          display_name: "Grasshopper",
+          preferred_side: "RIGHT",
+          sanskrit_name: "Maksikanagāsana",
+          sideways: true,
+          sort_name: "Grasshopper",
+          two_sided: false
         }
       ],
       dropdown: false
-    }
+    };
   },
   async mounted() {
     this.poses = await posesApi.getPoses();
+    console.log(this.poses);
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -139,10 +143,10 @@ export default {
 }
 
 .center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .container {
@@ -165,11 +169,11 @@ export default {
   display: flex;
 }
 .hide-scrollbar {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .hide-scrollbar::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .sequence-scroll {
@@ -178,7 +182,7 @@ export default {
 
 .add-pose-option {
   display: flex;
-	align-items: center;
+  align-items: center;
 }
 
 .add-button {
