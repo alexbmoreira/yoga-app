@@ -130,7 +130,6 @@ export default {
   },
   async mounted() {
     this.poses = await posesApi.getPoses();
-    console.log(this.poses.next);
   }
 };
 </script>

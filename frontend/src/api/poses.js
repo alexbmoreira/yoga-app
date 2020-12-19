@@ -1,19 +1,18 @@
 import axios from "axios";
 
 async function getPoses() {
-	// var results = []
-	// var next = "1"
+    var records = [];
 
-	// while(next !== null)
-	// {
-	// 	const response = await axios.get("/api/poses/");
-	// 	results += response.data.results
-	// 	next = response.data.next
-	// }
-	// return results;
+    // do {
+		var response = await axios.get("/api/poses/");
 
-	const response = await axios.get("/api/poses/");
-	return response.data.results;
+		records = records.concat(response.data.results);
+    // } while (response.data.next !== null)
+
+	return records
+
+	// const response = await axios.get("/api/poses/");
+	// return response.data.results;
 }
 
 export default {
