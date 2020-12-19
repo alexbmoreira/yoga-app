@@ -15,7 +15,7 @@
       <div class="add-pose">
         <div class="add-pose-option">
           <h3>Add a pose</h3>
-          <button @click="dropdown = !dropdown" class="add-button center">
+          <button @click="dropdown = !dropdown" class="small-button center">
             <i v-if="dropdown == false" class="fas fa-chevron-down"></i>
             <i v-if="dropdown" class="fas fa-chevron-up"></i>
           </button>
@@ -25,7 +25,7 @@
           <div class="poses-list hide-scrollbar">
             <div v-for="(pose, index) in searchedPoses" :key="index" class="list-pose">
               <p>{{ pose.display_name }}</p>
-              <button @click="addPose(pose)" class="add-button center"><i class="fas fa-plus"></i></button>
+              <button @click="addPose(pose)" class="small-button center"><i class="fas fa-plus"></i></button>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default {
   align-items: center;
 }
 
-.add-button {
+.small-button {
   background-color: #c47777;
   border-radius: 50%;
   height: 20px;
