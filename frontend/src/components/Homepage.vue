@@ -14,11 +14,10 @@
           <h3>Add a pose</h3>
           <button @click="dropdown = true" class="add-button">+</button>
         </div>
-
         <div v-if="dropdown" class="search">
           <input type="text" />
-          <div v-for="(pose, index) in poses" :key="index">
-            <p>{{pose.display_name}}</p>
+          <div v-for="(pose, index) in poses" :key="index" class="list-pose">
+            <p>{{ pose.display_name }}</p>
           </div>
         </div>
       </div>
@@ -126,12 +125,12 @@ export default {
           two_sided: false
         }
       ],
-      dropdown: false
+      dropdown: true
     };
   },
   async mounted() {
     this.poses = await posesApi.getPoses();
-    console.log(this.poses);
+    console.log(this.poses.next);
   }
 };
 </script>
@@ -193,5 +192,16 @@ export default {
   border: 0;
   color: #fff;
   cursor: pointer;
+}
+
+.list-pose {
+  border-bottom: 1px solid #d6d6d6;
+  display: flex;
+  justify-content: left;
+}
+.list-pose:nth-last-child(1) {
+  border-bottom: 0px solid #d6d6d6;
+  display: flex;
+  justify-content: left;
 }
 </style>
