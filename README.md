@@ -13,6 +13,7 @@ pip install -r requirements.txt
 
 ### Bootstrap database
 ```shell
+createdb yoga
 python manage.py migrate
 python manage.py backfill
 ```
