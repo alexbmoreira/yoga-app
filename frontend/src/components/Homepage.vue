@@ -4,20 +4,29 @@
       <h1>Namaste</h1>
       <div class="sequence">
         <div class="sequence-scroll hide-scrollbar">
-          <div v-for="(pose, index) in selected" :key="index" class="pose">
-            <h2>{{ pose.display_name }}</h2>
+          <div v-for="(pose, index) in selected" :key="index" class="sequence-chunk">
+            <i v-if="index > 0" class="fas fa-angle-double-right"></i>
+            <div class="pose">
+              <h2>{{ pose.display_name }}</h2>
+            </div>
           </div>
         </div>
       </div>
       <div class="add-pose">
         <div class="add-pose-option">
           <h3>Add a pose</h3>
-          <button @click="dropdown = true" class="add-button">+</button>
+          <button @click="dropdown = !dropdown" class="small-button center">
+            <i v-if="dropdown == false" class="fas fa-chevron-down"></i>
+            <i v-if="dropdown" class="fas fa-chevron-up"></i>
+          </button>
         </div>
         <div v-if="dropdown" class="search">
-          <input type="text" />
-          <div v-for="(pose, index) in poses" :key="index" class="list-pose">
-            <p>{{ pose.display_name }}</p>
+          <input class="pose-search" type="text" v-model="search_term" />
+          <div class="poses-list hide-scrollbar">
+            <div v-for="(pose, index) in searchedPoses" :key="index" class="list-pose">
+              <p>{{ pose.display_name }}</p>
+              <button @click="addPose(pose)" class="small-button center"><i class="fas fa-plus"></i></button>
+            </div>
           </div>
         </div>
       </div>
@@ -33,104 +42,25 @@ export default {
   data() {
     return {
       poses: [],
-      selected: [
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        },
-        {
-          base_name: "grasshopper",
-          display_name: "Grasshopper",
-          preferred_side: "RIGHT",
-          sanskrit_name: "Maksikanagāsana",
-          sideways: true,
-          sort_name: "Grasshopper",
-          two_sided: false
-        }
-      ],
-      dropdown: true
+      selected: [],
+      dropdown: false,
+      search_term: ""
     };
+  },
+  methods: {
+    addPose(pose) {
+      this.selected.push(pose)
+    }
+  },
+  computed: {
+    searchedPoses() {
+      return this.poses.filter(pose => {
+        return pose.display_name.match(this.search_term)
+      })
+    }
   },
   async mounted() {
     this.poses = await posesApi.getPoses();
-    console.log(this.poses.next);
   }
 };
 </script>
@@ -149,7 +79,11 @@ export default {
 }
 
 .container {
-  max-width: 1150px;
+  max-width: 1090px;
+}
+
+.fa-angle-double-right {
+  font-size: 3em;
 }
 
 .pose {
@@ -164,7 +98,18 @@ export default {
   margin-left: 5px;
 }
 
+.sequence {
+  min-height: 200px;
+  min-width: 1090px;
+}
+
+.sequence-chunk {
+  display: flex;
+  align-items: center;
+}
+
 .sequence-scroll {
+  overflow-x: scroll;
   display: flex;
 }
 .hide-scrollbar {
@@ -175,16 +120,12 @@ export default {
   display: none;
 }
 
-.sequence-scroll {
-  overflow-x: scroll;
-}
-
 .add-pose-option {
   display: flex;
   align-items: center;
 }
 
-.add-button {
+.small-button {
   background-color: #c47777;
   border-radius: 50%;
   height: 20px;
@@ -194,14 +135,34 @@ export default {
   cursor: pointer;
 }
 
+.pose-search {
+  height: 2em;
+  border-radius: 0.5em;
+  width: 100%;
+  border: 1px solid #d6d6d6;
+  font-size: 1em;
+  padding: 0px 5px;
+}
+.pose-search:focus {
+  outline-width: 0;
+}
+
+.poses-list {
+  max-height: 300px;
+  overflow: scroll;
+  border: 1px solid #d6d6d6;
+  padding: 0px 10px;
+  border-radius: 0.5em;
+  margin-top: 10px;
+}
+
 .list-pose {
   border-bottom: 1px solid #d6d6d6;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+  align-items: center;
 }
 .list-pose:nth-last-child(1) {
   border-bottom: 0px solid #d6d6d6;
-  display: flex;
-  justify-content: left;
 }
 </style>
