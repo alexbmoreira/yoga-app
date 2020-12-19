@@ -15,9 +15,11 @@
           <button @click="dropdown = true" class="add-button">+</button>
         </div>
         <div v-if="dropdown" class="search">
-          <input type="text" />
-          <div v-for="(pose, index) in poses" :key="index" class="list-pose">
-            <p>{{ pose.display_name }}</p>
+          <input class="pose-search" type="text" @keyup="searchPose()" />
+          <div class="poses-list">
+            <div v-for="(pose, index) in poses" :key="index" class="list-pose">
+              <p>{{ pose.display_name }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -191,6 +193,27 @@ export default {
   border: 0;
   color: #fff;
   cursor: pointer;
+}
+
+.pose-search {
+  height: 2em;
+  border-radius: 0.5em;
+  width: 100%;
+  border: 1px solid #d6d6d6;
+  font-size: 1em;
+  padding: 0px 5px;
+}
+.pose-search:focus {
+  outline-width: 0;
+}
+
+.poses-list {
+  max-height: 300px;
+  overflow: scroll;
+  border: 1px solid #d6d6d6;
+  padding: 0px 10px;
+  border-radius: 0.5em;
+  margin-top: 10px;
 }
 
 .list-pose {
