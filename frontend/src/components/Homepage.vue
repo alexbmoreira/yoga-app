@@ -15,9 +15,9 @@
           <button @click="dropdown = true" class="add-button">+</button>
         </div>
         <div v-if="dropdown" class="search">
-          <input class="pose-search" type="text" @keyup="searchPose()" />
+          <input class="pose-search" type="text" v-model="search_term" />
           <div class="poses-list">
-            <div v-for="(pose, index) in poses" :key="index" class="list-pose">
+            <div v-for="(pose, index) in searchedPoses" :key="index" class="list-pose">
               <p>{{ pose.display_name }}</p>
             </div>
           </div>
@@ -127,8 +127,19 @@ export default {
           two_sided: false
         }
       ],
-      dropdown: true
+      dropdown: true,
+      search_term: ""
     };
+  },
+  methods: {
+
+  },
+  computed: {
+    searchedPoses() {
+      return this.poses.filter(pose => {
+        return pose.display_name.match(this.search_term)
+      })
+    }
   },
   async mounted() {
     this.poses = await posesApi.getPoses();
