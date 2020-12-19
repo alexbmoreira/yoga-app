@@ -1,5 +1,6 @@
 <template>
   <div class="homepage">
+    <h1>Namaste</h1>
   </div>
 </template>
 
