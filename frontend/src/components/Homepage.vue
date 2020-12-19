@@ -14,14 +14,14 @@
       </div>
       <div class="add-pose">
         <div class="add-pose-option">
-          <h3>Add a pose</h3>
+          <h3 class="mr">Add a pose</h3>
           <button @click="dropdown = !dropdown" class="small-button center">
             <i v-if="dropdown == false" class="fas fa-chevron-down"></i>
             <i v-if="dropdown" class="fas fa-chevron-up"></i>
           </button>
         </div>
         <div v-if="dropdown" class="search">
-          <input class="pose-search" type="text" v-model="search_term" />
+          <input class="pose-search" type="text" v-model="search_term" placeholder="Search for a pose..." />
           <div class="poses-list hide-scrollbar">
             <div v-for="(pose, index) in searchedPoses" :key="index" class="list-pose">
               <p>{{ pose.display_name }}</p>
@@ -76,6 +76,10 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.mr {
+  margin-right: 10px;
 }
 
 .container {
@@ -138,10 +142,10 @@ export default {
 .pose-search {
   height: 2em;
   border-radius: 0.5em;
-  width: 100%;
   border: 1px solid #d6d6d6;
   font-size: 1em;
   padding: 0px 5px;
+  width: 100%;
 }
 .pose-search:focus {
   outline-width: 0;
@@ -154,6 +158,7 @@ export default {
   padding: 0px 10px;
   border-radius: 0.5em;
   margin-top: 10px;
+  width: 100%;
 }
 
 .list-pose {
