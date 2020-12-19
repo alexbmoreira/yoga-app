@@ -133,7 +133,6 @@ export default {
   border: 0;
   color: #fff;
   cursor: pointer;
-  font-size: 1em;
 }
 
 .pose-search {
