@@ -113,7 +113,7 @@ export default {
 }
 
 .sequence {
-  min-height: 200px;
+  min-height: 270px;
   min-width: 1090px;
 }
 
