@@ -6,7 +6,9 @@
         <div class="sequence-scroll hide-scrollbar">
           <div v-for="(pose, index) in selected" :key="index" class="sequence-chunk">
             <i v-if="index > 0" class="fas fa-angle-double-right"></i>
-            <div class="pose">
+            <div class="card center">
+              <div class="pose">
+              </div>
               <h2>{{ pose.display_name }}</h2>
             </div>
           </div>
