@@ -8,6 +8,9 @@
             <i v-if="index > 0" class="fas fa-angle-double-right"></i>
             <div class="card center">
               <div class="pose">
+                <button @click="removePose(pose)" class="small-button bg-grey close center">
+                  <i class="fas fa-times"></i>
+                </button>
               </div>
               <h2>{{ pose.display_name }}</h2>
             </div>
@@ -52,6 +55,10 @@ export default {
   methods: {
     addPose(pose) {
       this.selected.push(pose)
+    },
+    removePose(pose) {
+      var index = this.selected.indexOf(pose)
+      this.selected.splice(index, 1)
     }
   },
   computed: {
@@ -102,6 +109,7 @@ export default {
   padding: 10px;
   margin-right: 5px;
   margin-left: 5px;
+  position: relative;
 }
 
 .sequence {
@@ -140,6 +148,14 @@ export default {
   color: #fff;
   cursor: pointer;
 }
+.bg-grey {
+  background-color: #7a7a7a;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 
 .pose-search {
   height: 2em;
@@ -154,7 +170,7 @@ export default {
 }
 
 .poses-list {
-  max-height: 300px;
+  max-height: 375px;
   overflow: scroll;
   border: 1px solid #d6d6d6;
   padding: 0px 10px;
