@@ -73,7 +73,7 @@ export default {
   computed: {
     searchedPoses() {
       return this.poses.filter(pose => {
-        return pose.display_name.match(this.search_term)
+        return pose.display_name.toLowerCase().match(this.search_term.toLowerCase())
       })
     }
   },
