@@ -7,11 +7,11 @@
           <div v-for="(pose, index) in selected" :key="index" class="sequence-chunk">
             <i v-if="index > 0" class="fas fa-angle-double-right"></i>
             <div class="card center">
-              <div class="pose">
+              <div class="pose center">
                 <button @click="removePose(pose)" class="small-button bg-grey close center">
                   <i class="fas fa-times"></i>
                 </button>
-                <img :src="'../assets/pose_images/banana_L-tnbig.png'">
+                <img class="pose-image" :src="getPoseImage(pose)">
               </div>
               <h2>{{ pose.display_name }}</h2>
             </div>
@@ -62,7 +62,12 @@ export default {
       this.selected.splice(index, 1)
     },
     getPoseImage(pose) {
-      return pose.base_name
+      try {
+        return require(`../assets/pose_images/${pose.base_name}_L-tnbig.png`)
+      }
+      catch(ex) {
+        return null
+      }
     }
   },
   computed: {
@@ -159,6 +164,11 @@ export default {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.pose-image {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .pose-search {
