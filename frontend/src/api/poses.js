@@ -14,9 +14,6 @@ async function getPoses() {
     } while (page !== null);
 
 	return records;
-
-	// const response = await axios.get("/api/poses/");
-	// return response.data.results;
 }
 
 export default {
