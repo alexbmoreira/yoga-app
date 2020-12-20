@@ -11,6 +11,7 @@
                 <button @click="removePose(pose)" class="small-button bg-grey close center">
                   <i class="fas fa-times"></i>
                 </button>
+                <img :src="'../assets/pose_images/banana_L-tnbig.png'">
               </div>
               <h2>{{ pose.display_name }}</h2>
             </div>
@@ -59,6 +60,9 @@ export default {
     removePose(pose) {
       var index = this.selected.indexOf(pose)
       this.selected.splice(index, 1)
+    },
+    getPoseImage(pose) {
+      return pose.base_name
     }
   },
   computed: {
