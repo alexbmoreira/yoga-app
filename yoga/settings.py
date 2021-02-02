@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '-(z*7dy4fcb%!z5pui$&3lmip95as8037xx7v*w+846-g_0xe%n')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['namastebuilder.herokuapp.com']
 
