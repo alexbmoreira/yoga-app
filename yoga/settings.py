@@ -1,5 +1,6 @@
 import os
 import django_heroku
+import dj_database_url
 """
 Django settings for yoga project.
 
@@ -93,6 +94,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
