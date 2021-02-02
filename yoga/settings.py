@@ -28,7 +28,7 @@ SECRET_KEY = '-(z*7dy4fcb%!z5pui$&3lmip95as8037xx7v*w+86-g_0xe%n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['namastebuilder.herokuapp.com']
 
 
 # REST FRAMEWORK
