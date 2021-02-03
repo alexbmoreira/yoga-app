@@ -1,7 +1,7 @@
 import os
 from decouple import config
 import django_heroku
-import dj_database_url
+# import dj_database_url
 """
 Django settings for yoga project.
 
@@ -90,11 +90,11 @@ DATABASES = {
         'NAME': 'yoga',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'HOST': config('DATABASE_URL', 'localhost'),
         'PORT': '5432',
     }
 }
-DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
+# DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
 
 
 # Password validation
