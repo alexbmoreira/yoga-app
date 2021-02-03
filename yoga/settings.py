@@ -119,7 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:8080',
-    'https://namastebuilder.herokuapp.com'
+    'https://namastebuilder.herokuapp.com',
+    'https://namaste-22f27.web.app/'
 ]
 
 
