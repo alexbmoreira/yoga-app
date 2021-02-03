@@ -79,6 +79,7 @@ export default {
   },
   async mounted() {
     this.poses = await posesApi.getPoses();
+    console.log(process.env.VUE_APP_URL)
   }
 };
 </script>
