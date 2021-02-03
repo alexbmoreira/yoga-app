@@ -1,4 +1,7 @@
 import os
+from decouple import config
+import django_heroku
+# import dj_database_url
 """
 Django settings for yoga project.
 
@@ -16,17 +19,16 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-(z*7dy4fcb%!z5pui$&3lmip95as8037xx7v*w+86-g_0xe%n'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['namastebuilder.herokuapp.com']
 
 
 # REST FRAMEWORK
@@ -88,10 +90,11 @@ DATABASES = {
         'NAME': 'yoga',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'HOST': config('DATABASE_URL', 'localhost'),
         'PORT': '5432',
     }
 }
+# DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
 
 
 # Password validation
@@ -131,3 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
