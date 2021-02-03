@@ -8,13 +8,13 @@ from .serializers import PoseSerializer
 
 
 class PoseListAPIView(ListAPIView):
-    queryset = Pose.objects.all()
+    queryset = Pose.objects.all().order_by('id')
     serializer_class = PoseSerializer
     permission_classes = ()
 
 
 class PoseDetailAPIView(RetrieveAPIView):
-    queryset = Pose.objects.all()
+    queryset = Pose.objects.all().order_by('id')
     serializer_class = PoseSerializer
     permission_classes = ()
     lookup_url_kwarg = 'pose_id'
