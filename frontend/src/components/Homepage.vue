@@ -63,10 +63,15 @@ export default {
     },
     getPoseImage(pose) {
       try {
-        return require(`../assets/pose_images/${pose.base_name}_L-tnbig.png`)
+        return require(`../assets/pose_images/${pose.base_name}_R-tnbig.png`)
       }
       catch(ex) {
-        return null
+        try {
+          return require(`../assets/pose_images/${pose.base_name}_L-tnbig.png`)
+        }
+        catch {
+          return null
+        }
       }
     }
   },
